@@ -1,0 +1,37 @@
+\documentclass[
+12pt,
+a4paper,
+twocolumn,
+landscape
+]{article}
+
+\title{}
+\usepackage[includeheadfoot,columnsep=2cm, left=1in, right=1in, top=.5in, bottom=.5in]{geometry} % Margins
+
+\usepackage[T1]{fontenc} % For international characters
+\usepackage{XCharter} % XCharter as the main font
+
+% \usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[document]{ragged2e}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+
+% \pagenumbering{gobble}
+
+\begin{document}
+\section*{Symbolic Regression}
+
+\begin{algorithmic}
+    \STATE Initialize expression tree E with a constant node
+    \FOR{$n$ generations}
+    \FORALL{leaf nodes}
+    \STATE Move leaf node to one level down as a left leaf node and transform the leaf node to an operator (one of, +, -, *, /)
+    \STATE Choose the right leaf to be one of the function from the library (c, cx, *better to start only with this*, c sin, c cos, c tan, c log, c exp(c.) *complex stuff can be decided*)
+    \STATE Fit all required constants to the data with some linear/nonlinear least squares
+    \ENDFOR
+    \STATE Choose the transformation which gives the least error
+    \ENDFOR
+\end{algorithmic}
+
+\end{document}
