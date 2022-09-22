@@ -4,7 +4,7 @@ class TreeNode:
         self.left = None
         self.right = None
         self.data = data
-        self.dtype = 'f'
+        self.dtype = 'f' # can be function 'f', operator 'o' or single argument function 'sf'. In case of 'sf' only left node is used and right is set to None
 
 class ExpressionTree:
     def __init__(self, init_function = 'c'):
@@ -13,8 +13,12 @@ class ExpressionTree:
     def dfs(self, x):
         if x.dtype == 'f':
             return x.data
+
+        elif x.dtype == 'sf':
+            return x.data + '(' + self.dfs(x.left) + ')'
         
-        return x.data + '(' + self.dfs(x.left) + ', ' + self.dfs(x.right) + ')'
+        else:
+            return x.data + '(' + self.dfs(x.left) + ', ' + self.dfs(x.right) + ')'
 
     def getExpression(self):
         return self.dfs(self.root)
